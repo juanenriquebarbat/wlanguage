@@ -1,0 +1,47 @@
+{
+    "name": "wlang",
+    "displayName": "windev",
+    "description": "windev language coloration",
+    "version": "1.0.0",
+    "publisher": "juanenriquebarbat",
+    "engines": {
+        "vscode": "^1.32.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "windev",
+        "wlang",
+        "webdev",
+        "wlanguage"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/juanenriquebarbat/wlanguage.git"
+    },
+    "icon": "images/logo-pcsoft.png",
+    "contributes": {
+        "languages": [
+            {
+                "id": "wlang",
+                "aliases": [
+                    "Windev",
+                    "wlang"
+                ],
+                "extensions": [
+                    ".wrg",
+                    ".wlg"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "wlang",
+                "scopeName": "source.wlang",
+                "path": "./syntaxes/wlang.tmLanguage.json"
+            }
+        ]
+    }
+}

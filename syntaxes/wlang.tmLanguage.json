@@ -1,0 +1,250 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Windev",
+	"patterns": [
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#invalids"
+		},
+		{
+			"include": "#variables"
+		}
+	],
+	"repository": {
+		"numbers":{
+			"patterns": [
+				{
+					"match": "(?<=[<>=,()\\[\\] ])([-+]?[0-9]*[\\.]?[0-9]+)",
+					"name": "invalid.wlang"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"end": "\\*/",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.wlang"
+						}
+					},
+					"name": "comment.block.wlang"
+				},
+				{
+					"begin": "//",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.wlang"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.double-slash.wlang"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.en.wlang",
+					"match": "(?i)\\b(FUNCTION|GLOBAL|INTERN|LOCAL|PROCEDURE)\\b"
+				},
+				{
+					"name": "keyword.control.en.wlang",
+					"match": "(?i)\\b(A|\\_A\\_|THEN|OTHER|CASE|EACH|IN|\\_IN\\_|AND|\\_AND\\_|END|WHERE|\\_WHERE\\_|NOT|FOR|WHEN|NEXT|IF|ELSE|ON|WHILE|ALL|ALL)\\b"
+				},
+				{
+					"name": "keyword.control.en.wlang",
+					"match": "(?i)\\b(LOOP|CONTINUE|EXCEPTION|DO|RESULT|RETURN|SEPARATE|EXIT)\\b"
+				},
+				{
+					"match": "(?i)\\b(of|from|is|by|are|a|a|without)\\b",
+					"name": "support.function.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(allocate|inherits|release|modulo|is)\\b",
+					"name": "support.function.en.wlang"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"include": "#string-double-quoted"
+				},
+				{
+					"include": "#string-single-quoted"
+				}
+			]
+		},
+		"string-double-quoted": {
+			"name": "string.quoted.double.wlang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.wlang",
+					"match": "\\."
+				}
+			]
+		},
+		"string-single-quoted": {
+			"name": "string.quoted.single.wlang",
+			"begin": "\\'",
+			"end": "\\'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.wlang",
+					"match": "\\."
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"match": "(?i)\\b(FALSE|NULL|CR|TAB|TRUE)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(MyWindow|MyPage|MySource|MySettings|MySelf|MyPopup|MyReport|MyFile|MyParent)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(iWhite|iLightBlue|iDarkBlue|iLightCyan|iDarkCyan|iLightGray|iDarkGray|iYellowToolhelp|iLightYellow|iDarkYellow|iLightMagenta|iDarkMagenta|iBlack|iLightRed|iDarkRed|iSystem|iLightGreen|iDarkGreen)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(Abandon|Abs|ActiveXEvent|Age|OrganizerDisplay|OrganizerDisplayPreviousPeriod|OrganizerDisplayNextPeriod|OrganizerAddAppointment|OrganizerChangeMode|OrganizerChangeZoom|OrganizerBackgroundColor|OrganizerAddAppointment|OrganizerInfoXY|OrganizerListAppointment|OrganizerMode|OrganizerPosition|OrganizerSelectMinus|OrganizerSelectPlus|OrganizerDeleteAppointment|OrganizerDeleteAll|OrganizerZoom|AJAXCancelAsynchronousCall|AJAXAsynchronousCallPending|AJAXAvailable|AJAXExecute|AJAXExecuteAsynchronous|Add|AddColumn|AddVoiceCommand|AddFavorite|AddLink|AddLine|AlbumPicker|AlbumSave|ProfilerStart|ProfilerEnd|AnimationEnabled|AnimationSetParameter|AnimationChangeType|AnimationPlay|AnimationPlayOnControlProperty|AnimationGetParameter|AnimationMinFPS|AnimationPrepare|CurrentYear|CancelAWPContext|CancelWebserviceContext|AnsiToOem|AnsiToUnicode|API|APIParameter|CallDLL32|CallInterface|AppActivateVersion|AppChangeParameter|AppControl|AppInstallUPD|AppVersionInfo|AppInstallVersion|AppListVersion|AppUPDAvailable|AppParameter|AppDeleteVersion|TreeDisplay|TreeAdd|TreeFind|TreeCopyItem|TreeMoveItem|TreeExpand|ArbreDerouleTout|ArbreEnroule|ArbreEnrouleTout|ArbreEtat|ArbreID|ArbreInfoXY|ArbreInsere|ArbreListeFils|ArbreModifie|ArbreOccurrence|ArbrePosition|TreeGiveChild|TreeIdentifier|TreeSelect|TreeSelectMinus|TreeSelectCount|TreeSelectPlus|TreeDelete|TreeDeleteChild|TreeDeleteAll|TreeSort|TreeSort|TreeTypeItem|ArcCos|ArcSin|ArcTan|Round|RoundUp|RoundDown|Asc|ScrollBarShow|ASPDisplay|ASPExecute|AutoRunAdd|AutoRunDelete|Warning)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(ToolbarDock|BarreDetache|ToolbarPosition|BinaryLoad|BinaryInfo|BinarySave|Beep|bitRightShift|bitLeftShift|BTAcceptConnection|BTActivate|BTEnableService|BTChangeConnectivity|BTChangeVisibility|BTConnectDevice|BTDisconnectDevice|BTDisableService|BTIsVisible|BTStatus|BTInfoDevice|BTInfoRadio|BTListDevice|BTListRadio|BTListService|BTInfoDevice|BTStack|BufferToInteger|BufferToHexa|BufferToReal|ShowToolTip|ToolTipColor|ToolTipDelay)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(CalendarOpen|CalendarPosition|CalendarSelect|CalendarSelectMinus|CalendarSelectCount|CalendarSelectPlus|CapsLockVerify|CaptchaDisplay|CaptchaVerify|SensorEnd|Charact|CharactTypeCount|CharactType|CharactUnicode|MapDisplayPosition|MapAddItinerary|MapAddMarker|MapEndOfMove|MapInfoPosition|MapInfoXY|MapModifyMarker|MapGetPosition|MapFollowMovement|MapDeleteItinerary|MapDeleteMarker|MapDeleteAll|BCCalculateControlCharacter|BCCapture|BCDecode|cdbAdd|cdbCancelSearch|cdbCol|cdbDateTimeToInteger|cdbWriteCol|cdbOut|cdbIntegerToDateTime|cdbClose|cdbListFile|cdbRead|cdbReadLast|cdbReadPrevious|cdbReadFirst|cdbReadSeek|cdbReadNext|cdbModify|cdbNbCol|cdbNbRec|cdbRecNum|cdbOpen|cdbReset|cdbDelete|cdbFound|ceConnect|ceCopyFile|ceCreateShortcut|ceDisconnect|ceFileDate|cePowerStatus|ceConnectionStatus|ceWinEnum|ceWinTitle|ceFileExist|ceFileTime|ceOEMInfo|ceRunExe|ceListFile|CellDisplayDialog|CellCloseDialog|ceMachineName|cePlatform|ceRegistryNextKey|ceRegistryCreateKey|ceRegistrySetValue|ceRegistryExist|ceRegistryListValue|ceRegistryQueryValue|ceRegistryFirstSubKey|ceRegistrySubKey|ceRegistryDeleteKey|ceRegistryDeleteValue|ceDir|ceMakeDir|ceRemoveDir|CertificateLoad|CertificateClientInfo|CertificateExtract|CertificateList|CertificatOuvreProprietes|CertificateSelect|CertificatSigneChaine|CertificateSignExecutable|CertificateSignFile|CertificateCheckString|CertificateCheckDuplicate|CertificateCheckFileSignatureBuffer|CertificateCheckFileSignatureFile|ceDeleteFileceDeleteShortcut|ceSysDir|ceFileSize|ceProcessorType|ceWindowsVersion|ceXRes|ceYRes|StringDisplay|StringStartsWith|StringCompare|StringBuild|StringEndsWith|StringFormat|StringIncrement|StringInsert|StringReverse|StringCount|StringRetrieve|StringDelete|StringToDate|StringToDuration|ChaineVersPalm|StringToArray|StringToUTF8|ControlEnabled|ControlAlias|ControlInOutReason|ControlClone|ControlPopupOwner|ControlCreate|ControlCurrent|ControlError|ControlExist|ControlGrayed|ControlInfoXY|ControlInvisible|ControlPrevious|ControlFirst|ControlFindHighlight|ControlFindTextPrevious|ControlFindTextFirst|ControlFindTextNext|ControlNoSpace|ControlNext|ControlDelete|ControlOver|ControlTypeInfo|ControlVisible|ChangeAction|ChangeCharset|ChangeKeyboard|ChangeTarget|ChangeSourceWindow|ChangeSkinTemplate|ChangeSeparator|ChangeStyle|LoadDLL|LoadError|ChargeImage|LoadImage|LoadImageSheet|LoadProcedure|LoadWDL|BreadcrumbAddLink|BreadcrumbInsertLink|BreadcrumbModifyLink|BreadcrumbDeleteLink|BreadcrumbDeleteAll|Seek|SeekByProcedure|SeekProcedure|ChronoStart|ChronoEnd|ChronoPause|ChronoReset|ChronoResume|ChronoValue|KeyCalcActivationKey|KeyCompareKey|KeyGenerateInitialKey|KeyGetIdentifier|CurrentColumn|COMCallMethod|CombinationFromName|CombinationFromValue|CombinationCheckName|ComboClose|ComboOpen|COMCreateInstance|Compile|Complete|CompleteDir|ComponentLoad|ComponentLoadAll|ComponentInfo|ComponentList|ComponentLocate|Compress|COMQueryInterface|ConfigureAWPContext|Confirm|ConnectionCount|MakeInteger|BuildBrowsingTable|BuildAutomationVariant|ContactDisplay|ContactAdd|ContactSearch|ContactCreate|ContactLast|ContactEdit|ContactList|ContactListSource|ContactRead|ContactModify|ContactPrevious|ContactFirst|ContactReset|ContactSelect|ContactNext|ContactDelete|ContextExist|ContextClose|ContextOpen|Contains|Conversion|Convert|CookieWrite|CookieRead|RecycleBinListFile|RecycleBinRestore|RecycleBinDelete|RecycleBinClear|Cos|CoTan|ColorLightness|ColorPalette|SelectionColor|ColorSaturation|ColorHue|CreateShortCut|Encrypt|CSVToArray|CursorDisplay|CursorCapture|CursorPos)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(FreeDLL|UnloadProcedure|UnloadWDL|DecimalToSexagesimal|DeclareAWPContext|DeclareWebserviceContext|UncompleteDir|Uncompress|Decrypt|Dequeue|DelayBeforeClosing|Pop|Move|MoveColumn|MoveLine|Deserialize|DisableAAF|dDisplay|dArc|DateDifference|Today|DateTimeDifference|DateTimeLocalToUTC|DateTimeByDefault|SysDateTime|DateTimeUTCToLocal|DateTimeValid|DatePicker|DateSys|DateValid|DateToString|DateToInteger|DateToDay|DateToDayInAlpha|DateToMonthInAlpha|DateToWeekNumber|dbgEnableAssert|dbgEnableAudit|dbgEnableLog|dbgAssert|dbgStartMemoryDiff|dbgStartRecording|dbgWriteCommentAudit|dbgWriteWarningAudit|dbgError|dbgAuditStatus|dbgLogStatus|dbgEndMemoryDiff|dbgEndRecording|dbgInfo|dbgAuditOption|dbgLogOption|dbgSaveDebugDump|dbgSaveMemoryDump|dbgStandardOutput|dbgOnError|dbgCheckDifferent|dbgCheckEqual|dbgCheckFalse|dbgCheckNotNull|dbgCheckNull|dbgCheckTrue|dCircle|dChangeMode|dLoadImage|dCopy|dCopyBlt|dCopyWindowImage|dChord|dStartDrawing|dCrop|DDEString|DDEConnect|DDEDisconnect|DDERecipient|DDESend|DDEError|DDEEvent|DDEExecute|DDEUnLink|DDEItem|DDEStart|DDELink|DDEWarmLink|DDEUpdate|DDERetrieve|DDETopic|LastDayOfWeek|LastDayOfMonth|DrawingAvailable|dEndDrawing|dBackground|dAlphaBlend|dHalo|Dialog|diffApply|diffCreate|dImageToArray|Dimension|dEncrustColor|dInvertColor|dLine|dModifyLightness|dModifyOpacity|dModifySaturation|dModifyHue|dModifyHSL|DnDAccept|DnDCursor|DnDIsDataAvailable|DnDCacheData|DnDCacheDashElement|DnDEvent|DnDForce|DnDGetData|DNSAddAddress|DNSListAddress|DNSDeleteAddress|dShadow|DomoSwitchOn|DomoSend|DomoStatus|DomoSwitchOff|DomoClose|DomoOpen|GetColor|SetFocus|GetGUID|GetIdentifier|DotNetAddHeader|DotNetDelegate|DotNetGetResult|DotNetError|DotNetRun|DotNetRunXML|DotNetVersion|dPixelColor|dPixelOpacity|dPoint|dFont|dPolygon|dSlice|dRectangle|dRectangleGradient|dRotation|dSaveImage|dSaveImageBMP|dSaveImageGIF|dSaveImageICO|dSaveImageJPEG|dSaveImagePNG|dSaveImageTIFF|dPen|dHorizontalSymmetry|dVerticalSymmetry|dText|dTransferToImage|DurationToString)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(eChangeCurrency|SwapLine|ScreenFirst|ScreenToFile|ScreenToSource|eDefaultViewCurrency|eDefaultMemCurrency|eRoundDifference|eInitCurrency|EmailAddFolder|EmailChangeFolder|EmailChangeStatus|EmailSetTimeOut|EmailLoadAttachment|EmailSeekFirst|EmailSeekFirstNotes|EmailBuildSource|EmailCopy|EmailCurrentFolder|EmailSend|EmailSendMessage|EmailStatus|EmailCloseSession|EmailImportHTML|EmailImportSource|EmailProgressBar|EmailRunApp|EmailListFolder|EmailReadLast|EmailReadLastHeader|EmailReadMessageHeader|EmailReadPreviousHeader|EmailReadFirstHeader|EmailReadNextHeader|EmailReadMessage|EmailReadPrevious|EmailReadFirst|EmailReadNext|EmailGetTimeOut|EmailUpdate|EmailMsgError|EmailNbMessage|EmailOpenMail|EmailStartSession|EmailStartIMAPSession|EmailStartNotesSession|EmailStartOutlookSession|EmailStartPOP3Session|EmailStartSMTPSession|EmailGetAll|EmailReset|EmailSaveAttachment|EmailRemoveFolder|EmailDeleteMessage|EmailMessageLength|EmailCheckAddress|Push|Enqueue|In64bitMode|InAJAXMode|InAndroidMode|InAWPMode|InComponentMode|InAndroidEmulatorMode|IniOSEmulatorMode|InWindowsPhoneEmulatorMode|InReportsAndQueriesMode|InFactoryMode|IniOSMode|InJavaMode|InLinuxMode|InUMCMode|InPHPMode|InPocketMode|InDelayedProcedureMode|InStoredProcedureMode|InServiceMode|InSimulatorMode|InAndroidSimulatorMode|IniOSSimulatorMode|InPHPSimulatorMode|InPocketSimulatorMode|InWindowsPhoneSimulatorMode|InWindowsStoreAppSimulatorMode|InWinRTSimulatorMode|InTestMode|InAutomaticTestMode|InTSEMode|InVGAMode|InWebMode|InWebserviceMode|InWidgetMode|InWindowsMode|InWindowsPhoneMode|InWindowsStoreAppMode|InWinRTMode|eCurrencyName|IntegerToDate|IntegerToTime|IntToHexa|IntegerToDay|IntegerToDayInAlpha|IntegerToMonthInAlpha|IntegerToWeekNumber|EnumerationFromName|EnumerationFromValue|EnumerationCheckName|EnumerationCheckValue|EnumControl|EnumElement|EnumMenu|EnumSubElement|SendKey|Error|ErreurAvecDélai|ErrorChangeParameter|ErrorBuild|ErrorThrow|ErrorInfo|ErrorPropagate|ErrorRestoreParameter|WithSpace|IsOdd|IsNumeric|IsEven|SysPowerStatus|eExchangeRate|BinaryAND|Event|EvaluateExpression|eToCurrency|eToEuro|Execute|ExecutePresetAction|ExécuteAncêtre|ExecuteCode|ExecuteAAF|ExecuteDelayedProcedure|ExecuteMainThread|ExecuteProcess|ExceptionEnable|ExceptionDisplay|ExceptionChangeParameter|ExceptionThrow|ExceptionInfo|ExceptionPropagate|ExceptionRestoreParameter|ExeGetPID|ExeInfo|ExeRunning|ExeListDLL|ExeListProcess|ExePriority|ExeTerminate|Exp|ExplorerAccept|ExplorerRetrieve|ExtractString|ExtractLine)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(LargeFontFactor|Factorial|fAddBuffer|fAddText|fAttribute|fAttributeReadOnly|FaxOutbox|FaxInbox|FaxConnect|FaxDisconnect|FaxSend|FaxStatus|FaxRestart|FaxResume|FaxDelete|FaxPause|fLock|fChangeSize|fLoadBuffer|fLoadText|fShortPath|fLongPath|fFind|fCompress|fCompare|fBuildPath|fCopyFile|fCopyFileWebFolder|fCreate|fCreateLink|fEncrypt|fUnlock|fUncompress|fDecrypt|fMoveFile|fDetectRemovableStorage|fDate|fDateTime|fCurrentDrive|fDriveInfo|fDriveReady|fWrite|fWriteLine|WinActivateDDW|WinAdaptHeight|WinAdaptWidth|WinAdaptSize|WinAnimationClosing|WinAnimationOpening|WinAnimationNext|WinSystemButton|WinChangeAlias|WinPasteForm|WinCopyForm|WinDisableEffect|WinGiveSuitableHeight|WinGiveSuitableWidth|WinInactiveEffect|CurrentWin|WinInput|WinStatus|WinOutHeight|WinOutWidth|WinOutXPos|WinOutYPos|WinForceDDW|WinIconBarHeight|WinBackgroundImage|WinInitialized|WinInHeight|WinInWidth|WinInXPos|WinInYPos|WinOrientation|PreviousWin|WinScreenRectangle|WinRedraw|WinSize|WinUsefulSize|WinRateDDW|Close|CloseSession|fIsImage|fExtractPath|fExtractResource|fClose|fFileExist|fTempFile|fGraphicFilter|fTime|FileDisplay|HelpFile|FileToScreen|FileToMemoryList|FileToMemory|FileToPage|FileToArray|FileToMemoryTable|QueueInfo|IWListDisplay|IWListAdd|IWListInsert|IWListCount|IWListPosition|IWListPrevious|IWListNext|IWListDelete|IWListDeleteAll|FinRedemption|FinDecreasingRedemption|FinLinearRedemption|EndAutomatedProcedure|FinError|EndEvent|FinPeriodInterest|FinPaymentNb|EndProgram|EndService|FinInterestRate|EndTimer|EndTimerSys|FinCurrentVal|FinNetCurrentVal|FinFutureVal|FinRepayVal|ArrowStart|ArrowEnd|fListDisk|fListFile|fListDirectory|fListResource|fRead|fReadLine|fReadLineRegularExpression|StreamAccept|StreamConnect|StreamDisconnect|StreamInfo|FluxJoue|StreamReject|StreamStop|fMemWait|fMemExist|fMemOpen|fShortName|fNameOfFile|fLongName|fOpen|fOpenTempFile|fSeek|fDirectoryExist|fTempPath|FramesetRefresh|FramesetDisplay|FramesetUse|fRename|fDir|fDirAttribute|fCopyDir|fMakeDir|fMakeDir_55|fMoveDir|fDataDir|fDataDirCommon|fDataDirUser|fDirAttrib|fCurrentDir|fReportsAndQueriesDir|fExeDir|fGlobalDirCommon|fGlobalDirUser|fParentDir|fResourceDir|fSelectDir|fRemoveDir|fDirSize|fWebDir|fSelect|fImageSelect|fSeparator|fSaveBuffer|fSaveText|fSep|fStopCompress|fDelete|fDeleteFileWebFolder|fTrackFile|fTrackDirectory|fTrackStop|fTrackStopAll|fSize|fSizeUncompressed|FTPAttribute|FTPCommand|FTPConnect|FTPDisconnect|FTPDate|FTPDateTime|FTPSend|FTPFileExist|FTPTime|FTPListFile|FTPName|FTPParameter|FTPProxy|FTPGet|FTPRenameFile|FTPMakeDir|FTPCurrentDir|FTPRemoveDir|FTPDeleteFile|FTPSize)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(GeneratePassword|geoAzimuth|geoDistance|geoRunApp|geoGetAddress|GadgetDisplayFlyout|GadgetLoadParameter|GadgetCloseFlyout|GadgetSaveParameter|GanttAddLink|GanttAddTask|GanttChangeMode|GanttTimeDisplayed|GanttWorkingWeekDay|GanttListLink|GanttListTask|GanttOrganizeTask|GanttDateTimePosition|GanttGetTask|GanttDeleteLink|GanttDeleteTask|GanttDeleteAll|gToRetrieve|Left|gAlignment|gCircle|gCoord|GestureNbPointer|GestureCurrentPointer|GesturePosX|GesturePosY|gBackground|gBackgroundGradient|GglAddressToCoordinates|GglAdWSetCampaignExcludedCriterion|GglAdWGetOptimizedAdServing|GglAdWEstimateCampaign|GglAdWEstimateAdGroup|GglAdWEstimateKeyword|GglAdWListMCCAlert|GglAdWListAd|GglAdWListActiveAd|GglAdWListCampaign|GglAdWListClientAccount|GglAdWListCriterion|GglAdWListExcludedCriterion|GglAdWGetConversionOptimizerEligibility|GglAdWListBusiness|GglAdWGetActiveGroup|GglAdWListAdGroup|GglAdWListClientAccountInfo|GglAdWListReportJobs|GglAdWListeSiteParCatégorie|GglAdWListSiteByDemographics|GglAdWListSiteByTopic|GglAdWListSiteByURL|GglAdWListAdStats|GglAdWListCampaignStats|GglAdWListCriterionStats|GglAdWListGroupStats|GglAdWListVideo|GglAdWSetOptimizedAdServing|GglAdWScheduleReportJob|GglAdWGetAd|GglAdWGetCampaign|GglAdWGetMethodCost|GglAdWGetAdGroup|GglAdWGetAccountInfo|GglAdWGetKeywordsFromSite|GglAdWGetOperationCount|GglAdWGetUnitCount|GglAdWGetUsageQuotaThisMonth|GglAdWGetFreeUsageQuotaThisMonth|GglAdWGetUnitCountForClient|GglAdWGetUnitCountForMethod|GglAdWGetReportJobStatus|GglAdWGetURLReport|GglAdWGetURLReportGZip|GglAdWGetKeywordVariation|GglAdWReplaceExcludedCriterion|GglAdWDeleteReport|GglAdWCheckAd|GglAdWCheckCriterion|GglAdWCheckKeywordTraffic|GglAdWValidateReportJob|GglConnect|GglWrite|GglUploadDocument|GglPrintDocument|GglListCalendar|GglListAlbum|GglListComment|GglListeContact|GglListContactByRequest|GglListDocument|GglListContactGroup|GglListPhoto|GglListTag|GglGetCalendar|GglGetAlbum|GglGetStaticMap|GglGetDocument|GglGetLicense|GglFillCalendar|GglFillCalendarByRequest|GglFillAlbum|GglFillPhoto|GglRequest|GglDelete|gImage|gLink|gLinkActivate|gLine|gFont|gFontBold|gFontItalic|gFontUnderlined|gFontSize|GPSStopDetection|GPSDetectPosition|GPSLastPosition|GPSStatus|GPSInfo|GPSInitParameter|GPSGetPosition|GPSFollowMovement|GPSEnd|gpwInLDAPMode|gpwImportLDAPUsers|gpwInitAnalysis|gpwLogin|gpwOpen|gpwOpenConfiguration|gpwOpenConnection|gpwOpenLDAPSession|gpwGetFileInfo|gpwGetLDAPInfo|gpwGetUserInfo|grAddData|BurnerAddFile|BurnerAddDirectory|BurnerCancel|BurnerPath|BurnerErase|BurnerEject|BurnerSave|BurnerStatus|BurnerCompilationInfo|BurnerMediaInfo|BurnerList|BurnerMediaFound|BurnerVolumeName|BurnerProperty|GraveurSélectionne|BurnerMediaType|grAxisVisible|grStockAddData|grTooltip|grLoadParameter|grColor|grCategoryColor|grSeriesColor|grCreate|grCreateFont|grGradient|grDraw|grDestinationBMP|grDestinationControl|grDestinationEMF|grDestinationWnd|grDestinationWMF|grHolePercentage|gRectangle|grClearPict|grLineThickness|grCategoryLabel|grSeriesLabel|grExist|grWndSize|grGraduate|grColumnSpacing|grPrint|grIncreaseData|grPointInfo|grInfoXY|grLegend|grLabel|grSmoothing|grAutoRefreshCategoryLabel|grAutoRefreshSeries|grMask|grMenu|grScatterAddDataXY|grScatterSeriesColor|grScatterSeriesLabel|grScatterLinkPoint|grScatterPointSize|grMenuOption|grOrientation|grOrigin|GroupAdd|GroupLast|GroupRead|GroupModify|GroupPrevious|GroupFirst|GroupReset|GroupNext|GroupDelete|grParameter|gr3DSParameter|grLabelFont|grLegendFont|grTitleFont|grAxisTitleFont|grGridlines|grRaised|grRotation|grSeriesSecondaryAxis|grSaveBMP|grSaveEMF|grSauveParamètre|grSaveWMF|grStartAngle|grPiePullOut|grSourceCategoryLabel|grSourceSeries|grOverlayChart|grDeleteSeries|grDeleteAll|grSurfaceAddData|grSurfaceAltitudeColor|grSurfaceMarkCaption|grSurfaceMesh|grSurfaceGridlines|grSurfaceDeleteAltitudeColor|grSurfaceDeleteMarkCaption|grImageSize|grTitle|grAxisTitle|grType|gPen|gToText)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(HAccelerateSpeed|HActivateFilter|HActivateAutoFilter|HActivateTrigger|HActivateServerTrigger|HAdd|HAddGroup|HAddLink|HAddScheduledOptimization|HAddScheduledBackup|HAddTask|HAddUser|HAlias|HAlias_55|HAliasExternal|Handle|HandleParentNext|HCancelAlias|HCancelDeclaration|HCancelSeek|HCancelBackup|HStopServer|Random|HashString|HashFile|HashCheckString|HashCheckFile|Hasp|HaspHLLogin|HaspHLEncrypt|HaspHLLogout|HaspHLDecrypt|HaspHLWrite|HaspHLInfo|HaspHLRead|HAssign|HLinkMemo|HForward|HLockFile|HLockRecNum|HChangeKey|HChangeConnection|HChangeLocation|HChangePassword|HChangeName|HChangeDir|HChangeLogDir|HChangeRplDir|HLoadParameter|HClusterAddNode|HClusterStop|HClusterStart|HClusterState|HClusterIgnoreSynchro|HClusterNodeInfo|HClusterParameter|HClusterDeleteNode|HConnect|HConnectRemoteAccess|HBuildKeyValue|HBuildKeyValueANSI|HConvertX|HCopyRecord|HCopyRecord_55|HCopyFile|HCreation|HCréationSiInexistant|HCreateSubscriberReplica|HCreateMasterReplica|HCreateMoveableReplica|HCreateServerTrigger|HCreateView|HCreateView_55|HCS.FrameSize|HUnlockFile|HUnlockRecNum|HStartLock|HDeclare|HDeclareExternal|HDisconnectClient|HDescribeConnection|HDescribeFile|HDescribeFullTextIndex|HDescribeLink|HDescribeItem|HDescribeTrigger|HDescribeTrigger_55|HDescribeServerTrigger|HIsLocked|HStartServer|HDeactivateFilter|HDeactivateAutoFilter|HDeactivateTrigger|HDeactivateServerTrigger|HDeleteTrigger|HDeleteServerTrigger|HDeleteView|HRecordDate|HDBCreation|HDBDescribeFile|HDBDescribeIndex|HDBDescribeField|HDBIndex|HDBOpen|HDBOpenNoLock|HDBSortType|HDescribeKey|HLast|HDuplicates|HDuplicateRecord|HWrite|HOut|HRecordToXML|HSendMessageToClient|HError|HErrorLock|HErrorDuplicates|HErrorStatusModification|HErrorInfo|HErrorIntegrity|HErrorModification|HErrorPassword|HState|HServerStatus|TimeDifference|TimePicker|TimeSys|TimeValid|TimeToString|TimeToInteger|HExecuteProcedure|HExecuteQuery|HExecuteSQLQuery|HExecuteScheduledBackup|HExecuteView|HexaToBuffer|HexaToInt|HExportXML|HExtractMemo|HClose|HCloseAnalysis|HCloseConnection|HFileExist|HFilter|HFilterStartsWith|HFilterIncludedBetween|HFilterContains|HFilterIdentical|HEndNoDatabaseAccess|HEndNoModif|HEndLock|HFlush|HMergeView|HSetRemoteAccess|HSetCache|HSetDuplicates|HSetIntegrity|HSetLog|HSetMemo|HSetReplication|HSetREP|HSetServer|HManageTask|HSetTransaction|HSetTrigger|HHistoryModification|HImportHF55|HImportText|HImportText_55|HImportXML|HInfoAnalysis|HInfoLock|HInfoDatabaseRights|HInfoFileRights|HInfoServerRights|HInfoFile|HInfoGene|HInfoGroup|HInfoLog|HInfoMemo|HInfoDatabaseProperty|HInfoFileProperty|HInfoServerProperty|HInfoReplica|HInfoItem|HInfoBackup|HInfoServer|HInfoTask|HInfoUser|HInitSubscriber|HInitHF55|HNoDatabaseAccess|HNoModif|HLogInfo|HLogRecreate|HLogRestart|HLogStop|HFree|HFreePosition|HFreeQuery|HListAnalysis|HListDatabase|HListKey|HListConnection|HListStoredElement|HListFile|HListGroup|HListFullTextIndex|HListLink|HListScheduledOptimization|HListParameter|HListQueryParameter|HListCustomFolder|HListProvider|HListREP|HListItem|HListScheduledBackup|HListServer|HListTask|HListTrigger|HListServerTrigger|HListUser|HListConnectedUser|HRead|HReadLock|HReadLast|HReadLastLock|HReadLastNoLock|HReadPrevious|HReadPreviousLock|HReadPreviousNoLock|HReadFirst|HReadFirstLock|HReadFirstNoLock|HReadSeek|HReadSeekLock|HReadSeekLast|HReadSeekFirst|HReadSeekNoLock|HReadNoLock|HReadNext|HReadNextLock|HReadNextNoLock|HMigrateLinkedCompositeKey|HUpdateSet|HUpdateQuery|HMode|HModify|HModifyDatabaseRights|HModifyFileRights|HModifyServerRights|HModifyGroup|HModifyScheduledOptimization|HModifyDatabaseProperty|HModifyFileProperty|HModifyServerProperty|HModifyScheduledBackup|HModifyStructure|HModifyTask|HModifyUser|HNbRec|HNotifAddCCRecipient|HNotifAddEmailRecipient|HNotifConfigure|HNotifListCCRecipient|HNotifListEmailRecipient|HNotifDeleteCCRecipient|HNotifDeleteEmailRecipient|HRecNum|HOptimize|HOptimizeQuery|HOpen|HOpenAnalysis|HOpenConnection|HPass|HGetCurrentPosition|HSetPosition|hComputer|HPrevious|HPrepareQuery|HPrepareSQLQuery|HFirst|HPriority|HPriorityClient|HClearWorkingDir|HConnectionQuality|HRecordToString|HRetrieveLog|HRetrieveItem|HRegenerateFile|HIndexingInProgress|HIndex|HIndex_55|HCross|HReset|HResetClient|HResetGroup|HResetUser|HSeek|HSeekLast|HSeekFirst|HReconnect|HRecreateSubscriberReplica|HBackward|HServerWorkingDir|HRestoreBackup|HRestorePosition|HRplDeclareLink|HRplManageFile|HRplManageItem|HRplPass|HRplFilterProcedure|HRSAddConfig|HRSExecute|HRSInfo|HRSInit|HRSListConfig|HRSModifyConfig|HRSDeleteConfig|HSecurity|HBackup|HSaveParameter|HSavePosition|HSimulateNetwork|HStatCalculate|HStatDate|HStatTime|HStatNbDuplicates|HStatNbRec|HStatNbRecRange|HSubstName|HSubstDir|HNext|HDelete|HDeleteDatabase|HDeleteSet|HDeleteFile|HDeleteGroup|HDeleteLink|HDeleteScheduledOptimization|HDeleteParameter|HDeleteDirectory|HDeleteQuery|HDeleteBackup|HDeleteScheduledBackup|HDeleteTask|HDeleteAll|HDeleteUser|HOnServerCall|HOnError|HSynchronizeReplica|HTMLNavigate|HTMLToRTF|HTMLToRGB|HTMLToText|HTransactionCancel|HTransactionStart|HTransactionEnd|HTransactionInterrupted|HTransactionFree|HTransactionList|HSortView|HFound|HTTPAddFile|HTTPAddParameter|HTTPCancelForm|HTTPCertificate|HTTPCookieWrite|HTTPCookieManage|HTTPCookieRead|HTTPCookieGet|HTTPCookieReset|HTTPCookieReplace|HTTPCreateForm|HTTPDestination|HTTPGetResult|HTTPSendForm|HTTPProgressBar|HTTPListCertificate|HTTPParameter|HTTPResetForm|HTTPRequest|HTTPTimeOut|HCheckIndex|HCheckStructure|HToFile|HVersion|HToItem|HViewToFile|HViewToTable)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(iAddBookmark|iPreview|iBorder|iRoundBorder|iChangeSubReportSource|iConfigure|iConfigureReport|Iconize|iCreateFont|IdentifierAWPContext|iLastFile|iDestination|iEllipse|iSequencingAdd|iSequencingPrint|iEscape|iWindowCancel|iCloseReport|iEndReport|iEndPrinting|iForceComplement|iGroupAdd|iGroupPrint|iGroupConfigure|iNestedHeaderFooter|iImageHeight|iPageHeight|iPageHeightLeft|iTextHeight|iZoneHeight|iDocumentCanceled|iDocumentPrinted|iPrint|iPrintBlock|iPrintBarCode|iPrintBodyComplement|iPrintDuplicate|iPrintReport|iPrintImage|iPrintWord|iPrintPDF|iPrintZone|iPrintZoneHTML|iPrintZoneRTF|iInfoPrinter|iInitReportQuery|iInitReportQueryConnection|iInitSubReport|iImageWidth|iPageWidth|iTextWidth|iLink|iNewLine|iListNestedReports|iListPrinter|ImageStopScrolling|ImageLast|WindowBitmap|ImageInfoClose|ImageInfoList|ImageInfoModify|ImageInfoSave|ImageInfoValue|ImageStartScrolling|iTransparentMagenta|ImageOccurrence|ImageScrollingPosition|ImageXPos|ImageYPos|ImagePrevious|ImageFirst|ImageNext|ImageArea|iMargin|iMMToPica|inAppPurchaseProduct|inAppConsumeProduct|inAppListPurchase|inAppListProductInfo|inAppRestorePurchases|CurrentSubscript|NextSubscript|Info|InfoWithTimeout|BitmapInfo|InfoBuild|INIWrite|INIRead|InitWindow|InitRandom|InitParameter|Insert|InsertColumn|InsertLine|IconInstall|Instance|InternetConnected|CheckBoxAdd|CheckBoxInsert|CheckBoxDelete|iColumnNum|iPageNum|Reverse|iParameter|iParameterPreview|iParameterDuplicate|iParameterReport|iParameterExport|iParameterWatermark|iParameterPDF|iParameterXLS|iPicaToMM|iFont|iDidotFont|iHPos|iVPos|iXPos|iYPos|iReset|iDirImageHTML|iSkipLine|iSkipPage|iSelectFont|iReportPrintingStatus|iSubstBlock|iColumnEnd|iPageEnd|iLine|iHLine|iVLine)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(J2EEAddHeader|J2EEGetResult|J2EEError|J2EERun|J2EERunXML|ProgressBar|ProgressBarEnable|ProgressBarDisable|ProgressBarExecute|JavaLoad|JavaExecute|JavaExecuteFunction|BankHoliday|BankHolidayAdd|BankHolidayDeleteAll|JSEvent|JSEndEvent|JSInfoEvent|JSInterruptEvent|JSMethod|JSONExecute|JSONExecuteExternal|JSONToVariant|JSProperty)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(ExeRun|ShellExecute|ExeRemoteRun|RunReportsAndQueries|StartShare|LanguageToCharset|LanguageToNation|LanguageToName|LDAPAddAttribute|LDAPConnect|LDAPStartAdd|LDAPStartModify|LDAPDisconnect|LDAPListAttribute|LDAPListChildren|LDAPMode|LDAPNbValue|LDAPReset|LDAPFind|LDAPReplaceAttribute|LDAPReplaceAttributeValue|LDAPRenameAttribute|LDAPDelete|LDAPDeleteAttribute|LDAPDeleteAttributeValue|LDAPValue|LDAPValidateAdd|LDAPValidateModify|LEDSwitchOn|LEDSwitchOff|FreeAWPContext|CommandLine|LineToPosition|ListDisplay|ListAdd|ListSeek|ListMoveLine|ListDLL|ListInfo|ListInfoXY|ListInsert|ListModify|ListCount|ListPosition|ListSelect|ListSelectMinus|ListSelectCount|ListSelectPlus|ListDelete|ListDeleteAll|ListSort|Ln|Log|brightnessAuto|BrightnessModify|BrightnessGet)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(MemoryToFile|RecorderAction|RecorderEvent|RecorderEndEvent|Now|Upper|MatAdd|MatStack|MatCopy|MatCreate|MatDeterminant|MatWrite|MatError|MatExist|MatInvert|MatRead|MatReadColumn|MatReadLine|MatMultiply|MatNbColumn|MatNbLine|MatFloatAdd|MatFloatMultiply|MatFill|MatDelete|MatTranspose|Max|Maximize|MCIStopPlaying|MCIBeginning|MCIErr|MCIStatus|MCIExecute|MCIClose|MCIEnd|MCIPositionFormat|MCIHeight|MCIPlay|MCIWidth|MCIMsgErr|MCITrackCount|MCIOpen|MCIPause|MCITrack|MCIPosition|MCIRetrieve|MCISize|MCIWindowSize|MCIVolume|UMCActive|UMCOpen|MDIActive|MDIEnumChild|MDIMother|MDIWindowMenu|MDIOpen|MemAdd|MemCreate|MemLast|MemCurrent|MemOut|MemExist|MemModify|MemCount|MemSetPosition|MemPrevious|MemFirst|MemRetrieve|MemSeek|MemNext|MemDelete|MemDeleteAll|MemSort_55|MemSort|MemFound|MemKeyVal|MenuAdd|MenuAddMenu|MenuAddOption|MenuAddURLOption|MenuAddPopup|MenuAddSeparator|MenuClone|MenuUnMark|MenuState|MenuExist|MenuInsertMenu|MenuInsertOption|MenuInsertSeparator|MenuInvisible|MenuLabel|MenuIsMarked|MenuMark|MenuSelectMinus|MenuSelectPlus|MenuDelete|Message|StatusBarAddCell|StatusBarDeleteCell|MessTranslate|Middle|Min|Lower|ExecutionMode|CurrentMonth|WordCount|WordToArray|Mean|MultimediaStop|MultimediaControlVisible|MultimediaBeginning|MultimediaDuration|MultimediaStatus|MultimediaClose|MultimediaEnd|MultimediaHeight|MultimediaPlay|MultimediaWidth|MultimediaOpen|MultimediaPause|MultimediaPosition|MultimediaVolume|Multitask|MultitaskRedraw|MutexCreate|MutexStart|MutexDestroy|MutexEnd)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(Nation|NationToLanguage|BrowserIPAddress|BrowserIsConnected|BrowserClose|BrowserRunApp|BrowserName|BrowserOpen|BrowserPlatform|BrowserType|BrowserVersion|NetIPAddress|NetMACAddress|NetConnect|NetDisconnect|NetStartServer|NetSendBuffer|NetSendFile|NetSendMessage|NetClientSendMessage|NetExecute|NetCloseRemoteAccess|NetEndServer|NetInfoRemoteAccess|NetIPToMAC|NetListRemoteAccess|NetListIPAddress|NetDiskList|NetDirList|NetMACToIP|NetClientMessageBox|NetRemoteMessageBox|NetMsgError|NetMachineName|NetServerOption|NetOpenRemoteAccess|NetGetFile|NetRenameFile|NetEraseFile|NFCWriteTag|NFCSendTag|NFCStatus|NFCReadTag|NumberInWords|WindowCount|BinaryNOT|NotesActivateView|NotesAddAttachment|NotesItem|NotesDeactivateView|NotesItemDimension|NotesDocumentSeek|NotesDocumentLast|NotesDocumentIdentifier|NotesDocumentPrevious|NotesDocumentFirst|NotesDocumentNext|NotesDocumentDelete|NotesOut|NotesSave|NotesExtractAttachment|NotesCloseDatabase|NotesListItem|NotesListAttachment|NotesListView|NotesModifyItem|NotesModifyAttachment|NotesNbAttachment|NotesOpenDatabase|NotesOpenConnection|NotesReset|NotesDeleteItem|NotesDeleteAttachment|NotesViewSeekLast|NotesViewSeekFirst|NotesViewListColumn|NotifAdd|NotifModify|NotifPushEnable|NotifPushDisable|NotifPushSend|NotifPushListInvalidIdentifiers|NotifPushProcedure|NotifDelete|NumToString|DayNumberInAlpha|MonthNumberInAlpha|WeekNumber|NumHelp)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(OBEXConnect|OBEXDisconnect|OBEXSendFile|OBEXSendVCard|OBEXListFile|OBEXGetFile|OBEXGetVCard|GetActiveObject|Count|OemToAnsi|OKCancel|OLELoad|OLEPaste|OLECopy|OLECreateCopy|OLECreateEmpty|OLEActivate|OLEPlay|OLESave|OLEServer|ControlTab|OpenSSLCheck|OrgDisplay|OrgAdd|OrgAddChild|OrgInfoXY|OrgModify|OrgOccurrence|OrgSaveImage|OrgSelect|OrgSelectMinus|OrgSelectPlus|OrgDelete|OrgDeleteAll|SpellAddDictionary|SpellAvailable|SpellSuggest|SpellCheck|BinaryOR|BinaryXOR|YesNo|OutlookListProfile|OutlookStartSession|OutlookDefaultProfile|Open|OpenMobileWindow|OpenChild|OpenPopupMenu|OpenMainMenu|OpenPopup|OpenPopupPosition|OpenSister)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(Easter|apDisableAction|apExecute|PageActivateDDW|PageRefresh|PageAddress|PageDisplay|PageDisplayDialog|CurrentPage|PageExist|PageCloseDialog|PageInitialization|PageParameter|PagePosition|PreviousPage|SemiDynamicPageDisplay|PageRateDDW|PageUse|PageSubmit|PageToASP|PageToEmail|PageToFile|PageToJSP|PageToPHP|PageToSource|PalmAjoute|PalmCharge|PalmDesinstalle|PalmEnDehors|PalmFerme|PalmFiltre|PalmInstalle|PalmListeCategorie|PalmListeUtilisateurs|PalmLit|PalmLitDernier|PalmLitPrecedent|PalmLitPremier|PalmLitSuivant|PalmModifie|PalmNbEnr|PalmPositionne|PalmRafraichit|PalmRAZ|PalmReset|PalmSupprime|PalmVersChaine|apLog|apFullProjectName|ConfigureAAF|ConfigureSpellCheck|ParentObject|DecimalPart|IntegerPart|PDFIsProtected|PDFMerge|PDFMergeWithPassword|PDFNumberOfPages|PDFToText|Phonetic|PHPDisplay|PHPExecute|StackInfo|EmulateWarning|EmulateConfirm|EmulateDialog|EmulateError|EmulateWindow|EmulateInfo|EmulateMenu|EmulateOKCancel|EmulateYesNo|EmulateInput|EmulateMouse|Ping|SchedulerAddTrigger|SchedulerAddTask|SchedulerTaskStatus|SchedulerTaskList|SchedulerModifyTrigger|SchedulerModifyTask|SchedulerOpenTaskProperties|SchedulerTriggerProperties|SchedulerTaskProperties|SchedulerReset|SchedulerDeleteTrigger|SchedulerDeleteTask|SchedulerDisplay|SchedulerDisplayPreviousPeriod|SchedulerDisplayNextPeriod|SchedulerAddAppointment|SchedulerAddResource|SchedulerChangeMode|SchedulerBackgroundColor|SchedulerTimeDisplayed|SchedulerInfoXY|SchedulerListAppointment|SchedulerMode|SchedulerPosition|SchedulerPositionResource|SchedulerSelectMinus|SchedulerSelectPlus|SchedulerDeleteAppointment|SchedulerDeleteResource|SchedulerDeleteAll|LoWord|HiWord|FontCreate|FontList|FontSelect|PopupDisplay|PopupAnimate|PopupClose|Position|PositionOccurrence|PositionToLine|PostMessage|FirstDayOfWeek|FirstDayOfMonth|Clipboard|ClipboardFormat|ClipboardHeight|ClipboardWidth|ClipboardRTF|ClipboardUnicode|ProjectInfo|PropertyExist|Proxy|Power)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(GetDefinition|GetTypeDefinition|RepeatString|FolderData|FolderWeb|FolderWeb|ReplicInfo|ReplicInitialize|ReplicOpen|ReplicSynchronize|networkConnected|networkDisconnected|MobileNetworkStatus|MobileNetworkConnectionInfo|NetworkDomainName|NetworkDirName|NetworkUser|Root|Reset|SpeechRecognitionAddCommand|SpeechRecognitionTrigger|SpeechRecognitionDeleteCommand|RegistrySeek|RegistryNextKey|RegistryCopyKey|RegistryCreateKey|RegistrySetValue|RegistryExist|RegistryListkey|RegistryListValue|RegistryQueryValue|RegistryFirstSubKey|RegistryRename|RegistryDeleteKey|RegistryDeleteValue|RegistryValueType|RestartProgram|Replace|AppointmentDisplay|AppointmentAdd|AppointmentCreate|AppointmentLast|AppointmentList|AppointmentListCalendar|AppointmentRead|AppointmentModify|AppointmentPrevious|AppointmentFirst|AppointmentReset|AppointmentNext|AppointmentDelete|SetFocusAndReturnToUserInput|Restore|RESTSend|rssDisplay|rssBuildString|rssInitialize|rssSave|RTFAdd|RTFLoad|RTFInsert|RTFSearch|RTFReplace|RTFSelection|RTFToHTML|RTFToText|RibbonAdaptSize|RibbonCloseGrouping|RibbonEndExpandedMode|RibbonHighlightPane|RGB|RGBBlue|RGBRed|RGBToHTML|RGBGreen)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(RadioButtonAdd|RadioButtonInsert|RadioButtonDelete|SemaphoreCreate|SemaphoreStart|SemaphoreDestroy|SemaphoreEnd|Serialize|SaaSAdminSubscriptionAllocateLicense|SaaSAdminPricingEnableService|SaaSAdminAddSubscription|SaaSAdminAddClient|SaaSAdminAddService|SaaSAdminAddSite|SaaSAdminAddPricing|SaaSAdminAddUser|SaaSAdminFindSubscription|SaaSAdminFindClient|SaaSAdminFindService|SaaSAdminFindSite|SaaSAdminFindPricing|SaaSAdminFindUser|SaaSAdminConfigureCurrency|SaaSAdminConnect|SaaSAdminClientConnection|SaaSAdminSiteConnection|SaaSAdminCreateClientDatabase|SaaSAdminDisconnect|SaaSAdminSubscriptionDeallocateLicense|SaaSAdminPricingDisableService|SaaSAdminWriteSiteParameter|SaaSAdminIsConnected|SaaSAdminListSubscription|SaaSAdminListClientSubscription|SaaSAdminListClient|SaaSAdminListService|SaaSAdminListSite|SaaSAdminListPricing|SaaSAdminListUser|SaaSAdminReadSiteParameter|SaaSAdminModifySubscription|SaaSAdminModifyClient|SaaSAdminModifyClientConnection|SaaSAdminConfigureSiteData|SaaSAdminModifyService|SaaSAdminModifySite|SaaSAdminModifyPricing|SaaSAdminModifyUser|SaaSAdminDeleteSubscription|SaaSAdminDeleteClient|SaaSAdminDeleteService|SaaSAdminDeleteSite|SaaSAdminDeletePricing|SaaSAdminDeleteUser|SaaSChangePassword|SaaSConnect|SaaSClientConnection|SaaSDisconnect|SaaSWriteSiteParameter|SaaSIsConnected|SaaSReadSiteParameter|SaaSConnectedUser|SaaSCheckService|HourGlass|HourglassNetwork|Input|AssistedInputAdd|AssistedInputClose|AssistedInputOpen|AssistedInputDeleteAll|NoAccent|NoCharacter|NoRightCharacter|NoLeftCharacter|NoSpace|SAPConnect|SAPDisconnect|SAPExecute|SaveParameter|sComputeCrc16|sComputeCrc32|ScriptDisplay|ScriptExecute|sInEntryQueue|sInExitQueue|sEscape|sWrite|CriticalSectionStart|CriticalSectionEnd|SelectColor|WeekToDate|SendMessage|ServiceRefresh|ServiceStop|ServiceWaitStatus|ServiceControl|ServiceStart|ServiceUninstall|ServiceWriteEventLog|ServiceStatus|ServiceExist|ServiceInfo|ServiceInstall|ServiceList|ServiceModify|ServicePause|ServiceRestart|ServiceContinue|ServiceWait|sEvent|SexagesimalToDecimal|SFAdd|SFForwardQuery|SFConnect|SFConvertLead|SFDisconnect|sClose|SFExecuteQuery|SFExecuteProcess|SFMerge|sEndEvent|sParameter|SFRead|SFModify|SFSearch|SFSeekModified|SFSeekDeleted|SFUndelete|SFDelete|SFEmptyRecycleBin|EventWait|EventCreate|EventDestroy|EventChange|SIMEcrit|SIMLit|SIMNbContact|SIMSupprime|Sin|SiteAddress|DynamicSiteDisplay|sRead|SMSSend|SMSRunApp|SMSNbMessage|SMSFirst|SMSReset|SMSNext|SMSDelete|SNMPStringToOID|SNMPLoadMIB|SNMPSet|SNMPCloseSession|SNMPGet|SNMPGetNext|SNMPGetTable|SNMPOIDAccess|SNMPOIDDescription|SNMPOIDStatus|SNMPOIDType|SNMPOIDToString|SNMPStartSession|SNMPTrapEnable|SNMPTrapDisable|SOAPAddSAMLAssertion|SOAPAddAttribute|SOAPAddHeader|SOAPAddXMLSignature|SOAPGetResult|SOAPEncodeResult|SOAPError|SOAPRun|SOAPRunXML|SOAPPrepare|SOAPGetHeader|SocketAccept|SocketWaitForConnection|SocketChangeTransmissionMode|SocketClientInfo|SocketConnect|SocketConnectBluetooth|SocketConnectInfrared|SocketConnectSSL|SocketCreate|SocketCreateBluetooth|SocketCreateInfrared|SocketCreateSSL|SocketCreateUDP|SocketWrite|SocketExist|SocketClose|SocketRead|SocketDeny|Sum|Sound|SourceToScreen|SourceToPage|MouseXPos|MouseYPos|sOpen|SQLAssociate|SQLFetch|SQLLock|SQLChangeConnection|SQLCol|SQLColumn|SQLConnect|SQLDisconnect|SQLLast|SQLExec|SQLExecWDR|SQLClose|SQLColumnFormat|SQLInfo|SQLListSource|SQLListTable|SQLGetCol|SQLGetMemo|SQLGetTextMemo|SQLModify|SQLSeek|SQLPrevious|SQLFirst|SQLReqExists|SQLNext|SQLTable|SQLTransaction|SSLActive|StatCorrelation|StatCovariance|StatAverageDeviation|StatStandardDeviation|StatStandardDeviationP|StatError|StatMax|StatMin|StatAverage|StatSum|StatVariance|StatVarianceP|LocalStorageAdd|LocalStorageAvailable|LocalStorageValueName|LocalStorageOccurrence|LocalStorageGet|LocalStorageDelete|LocalStorageDeleteAll|DrawingStyle|delete|DeleteColumn|SupprimeCommandeVocale|DeleteLine|DeleteParameter|DeleteShortCut|DeleteAll|SpeechSynthesisStop|SpeechSynthesisInProgress|SpeechSynthesisInitialize|SpeechSynthesisReadFile|SpeechSynthesisReadText|SysShutdown|SysChangeEnvironment|SysChangeScreenResolution|SysColor|SysColorRes|SysRecentDocAdd|SysRecentDocList|SysSetFocus|SysEnvironment|SysSpace|SysStatusStorageCard|SysWinActive|SysWinShow|SysWinHandle|SysWinTitle|SysValidHandle|SysIconAdd|SysIconAddImage|SysIconBadge|SysIconModify|SysIconDelete|SysIconDeleteImage|SysIconize|SysIdentifier|SysIMEI|SysInstance|SysReleaseDC|SysListVideoCard|SysListScreen|SysListScreenOrientation|SysListScreenResolution|SysMetric|SysThumbnailAddButton|SysThumbnailModifyButton|SysThumbnailDeleteButton|SysThumbnailDeleteAll|SysStandby|SysErrorMode|SysNumberScreen|SysNameMainScreen|SysNameExe|SysSerialNum|SysScreenOrientation|SysGetDC|SysScreenResolution|SysScreenRectangle|SysDir|SysDirStorageCard|SysTheme|SysVersion|SysAndroidVersion|SysIOSVersion|SysWindowsVersion|SysXRes|SysYRes)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(TaskAdd|TaskLast|TaskRead|TaskModify|TaskPrevious|TaskFirst|TaskReset|TaskNext|TaskDelete|TableEnableFilter|TableDisplay|TableAdd|TableAddColumn|TableAddChild|TableAddLine|TableAddTitleHeader|TableAdjust|ArrayAdd|ArrayAddLine|ArrayAddSorted|ArraySeek|ArraySeekByProcedure|ArrayCopy|ArrayMove|ArrayMoveLine|ArraySwapLine|ArrayInfo|ArrayInsert|ArrayInsertLine|ArrayReverse|ArrayShuffle|ArrayCount|ArrayDelete|ArrayDeleteDuplicate|ArrayDeleteLine|ArrayDeleteAll|ArraySort|ArrayToString|ArrayToCSV|TableCellSelect|TableCellSelectOccurrence|TableSearch|TableSearchChild|TableColumnSelect|TableColumnSelectOccurrence|TableFilteredColumn|TableSortedColumn|TableMoveBranch|TableMoveColumn|TableMoveLine|TableExpand|TableExpandAll|TableDisableFilter|TableSwapBranch|TableSwapLine|TableSave|TableCollapse|TableCollapseAll|TableEnumColumn|TableItemStatus|TableChildCount|TableEnd|TableFixColumn|TablePrint|TableColumnSubscript|TableBreakSubscript|TableInfoXY|TableInsert|TableInsertColumn|TableInsertChild|TableInsertLine|TableMode|TableModify|TableModifyColumn|TableModifyLine|TableRecNum|TableCount|TablePosition|TableGiveChild|TableGiveParent|TableRestorePositionAndSelection|TableInputInProgress|TableInputSearch|TableSavePositionAndSelection|TableSelect|TableSelectMinus|TableSelectCount|TableSelectPlus|TableSelectToFile|TableDelete|TableDeleteChild|TableDeleteSelect|TableDeleteAll|TableSort_55|TableSort|TableSortChild|TableTypeItem|TableToExcel|TableToClipboard|TableToText|TableToWord|TableToXML|Length|CommonLength|LengthToString|Tangent|PVTCalculateUpdate|PVTCalculateAll|PVTLoad|PVTExpand|PVTExpandAll|PVTCollapse|PVTCollapseAll|PVTFilter|PVTInfoXY|PVTSave|PVTToExcel|DashDisplay|DashAddWidget|DashLoadConfiguration|DashInitialConfiguration|DashInfoXY|DashMode|DashCount|DashSaveConfiguration|dashDelete|DashDeleteAll|tapiCallStart|tapiCallIsWaiting|tapiCallIsBusy|tapiCallIsOver|tapiCallEnd|tapiNoAnswer|tapiStop|tapiCapability|tapiChangeDeviceParameter|tapiDial|tapiLineDial|tapiListen|tapiDialerDisplay|tapiDialerCall|tapiCallDuring|tapiRecord|tapiError|tapiCompleteTransfer|tapiStopCallDetection|tapiPlay|tapiDeviceList|tapiHold|tapiCalledID|tapiCallerID|tapiSendKey|tapiOrigin|tapiDevice|tapiDeviceParameter|tapiAnswerCall|tapiHangUp|tapiUnhold|tapiKeyPressed|tapiBlindTransfer|Wait|TestAddIteration|TestWriteResult|TestCheck|TextHeight|TextWidth|TextToHTML|TextToRTF|TextToXML|ThreadStop|ThreadWait|ThreadWaitSignal|ThreadCurrent|ThreadSendSignal|ThreadState|ThreadExecute|ThreadEnd|ThreadMode|ThreadPause|ThreadPersistent|ThreadPriority|ThreadResume|ThreadSuspend|TimelineDisplay|TimelineAddEvent|TimelineAddTrack|TimelineChangeMode|TimelineListEvent|TimelineDeleteEvent|TimelineDeleteTrack|TimelineDeleteAll|Timer|TimerSys|CurrentTitle|NextTitle|ToastDisplay|ToastDisplayPopup|ToastDeleteAll|KeyPressed|Trace|TraceStart|TraceEnd|Transfer|TreeMapAdd|TreeMapSeek|TreeMapInfoXY|TreeMapCount|TreeMapSearch|TreeMapSelectGroup|TreeMapDelete|TreeMapDeleteAll|Sort|Truncate|HSL|TileDisplayBadge|TileAdd|TileDeleteAll|TwainState|TwainSourceHeight|TwainSourceWidth|TwainListSource|TwainSelectSource|TwainCurrentSource|TwainToBMP|TwainToControl|TwainToGIF|TwainToJPEG|TwainToPDF|TwainToClipboard|TwainToTIFF|TwainScanZone|TypeVar|DataType)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(UnicodeToAnsi|UploadCopyFile|UploadCurrentFile|UploadStart|UploadFileName|UploadDelete|UploadDeleteAll|UploadSize|UploadSizeSent|UploadCurrentFileSizeSent|UploadFileSize|UploadCurrentFileSize|UPNPFindDevice|UPNPExecuteAction|UPNPListDevice|UPNPMediaStop|UPNPMediaPlay|UPNPMediaOpen|UPNPMediaPause|UPNPModifyContrast|UPNPModifyBrightness|UPNPModifyMute|UPNPModifySharpness|UPNPModifyVolume|UPNPGetContrast|UPNPGetBrightness|UPNPGetMute|UPNPGetSharpness|UPNPGetVolume|URLDecode|URLEncode|URLExtractPath|USBDisconnect|USBDetectRemovableStorage|USBListDevice|USBProperty|USBFind|UTF8ToAnsi|UTF8ToString|UTF8ToUnicode|Use|UUDecode|UUEncode)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(MatchRegularExpression|Val|ValidatePassword|VariableReset|VariantConvert|VariantToJSON|LockAppOn|LockAppOff|LockAppTimeout|LockAppPassword|TrialVersion|WINDEVVersion|WindowsVersion|ToClipboard|ToClipboardRTF|VibrationStop|VibrationTrigger|VideoDisplay|VideoStop|VideoCapture|VideoSetDriver|VideoConfigure|VideoStatus|VideoGenerateThumbnail|VideoStartApp|VideoListDriver|VideoListParameter|VideoParameter|VolumePhysicalButton|VolumeModify|VolumeGet)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(WebserviceClientIPAddress|WHelp|WidgetDisplay|WidgetRunApp|WiFiActivate|WiFiAddNetwork|WiFiConnect|WiFiDetectAccessPoint|WiFiStatus|WiFiConnectionInfo|WiFiListNetworkCard|WiFiListNetwork|WiFiSelectNetworkCard|WiFiDeleteNetwork)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(XamlDisable|XamlEvent|XamlProperty|xlsAddWorksheet|xlsData|xlsClose|xlsCurrentWorksheet|xlsMsgError|xlsNbColumn|xlsNbColumns|xlsNbWorksheet|xlsNbRow|xlsNbRows|xlsOpen|xlsSave|xlsDeleteWorksheet|xlsColumnTitle|xlsColumnType|xlsVersion|XMLAddAttribute|XMLAddChild|XMLCancelSearch|XMLFindNamespaceByName|XMLFindNamespaceByURI|XMLBuildString|XMLLast|XMLDocument|XMLValidDocument|XMLData|XMLWrite|XMLOut|XMLExecuteXPath|XMLExtractString|XMLExtractDocument|XMLChild|XMLChildExist|XMLInsertDocument|XMLInsertElement|XMLRead|XMLModify|XMLNamespace|XMLNamespaceURI|XMLValidNode|XMLElementName|XMLParentName|XMLOpen|XMLParent|XMLPath|XMLPrevious|XMLFirst|XMLResult|XMLRoot|XMLFind|XMLRename|XMLRestorePosition|XMLSave|XMLSavePosition|XMLNext|XMLDelete|XMLClose|XMLFound|XMLElementType|XMLToText)\\b",
+					"name": "constant.language.en.wlang"
+				},
+				{
+					"match": "(?i)\\b(zipAddFile|zipAddFileList|zipAddDirectory|zipChangePath|zipFindFile|zipCreate|zipCreateExe|zipSplit|zipIsMulti|zipExist|zipExtractPath|zipExtractFile|zipExtractFileList|zipExtractAll|zipClose|zipCurrentFile|zipInfoFile|zipListFile|zipPassword|zipMsgError|zipNbFile|zipNbPart|zipNbPartNeeded|zipCompressionLevel|zipOpen|zipOpenCAB|zipOpenRAR|zipMerge|zipDeleteFile|zipDeleteFileList|zipDeleteAll|zipSize|zipFileSize|mlzAddLine|mlzInsertLine|mlzDelete|mlzDeleteAll|LooperDisplay|LooperAdd|LooperAddLine|LooperSearch|LooperMoveLine|LooperExpand|LooperExpandAll|LooperSave|LooperCollapse|LooperCollapseExpand|LooperCollapseAll|LooperBreakSubscript|LooperInfoXY|LooperInsert|LooperInsertLine|LooperModify|LooperModifyLine|LooperRecNum|LooperCount|LooperPosition|LooperSelect|LooperSelectMinus|LooperSelectCount|LooperSelectPlus|LooperDelete|LooperDeleteAll|LooperSort_55|LooperSort|LooperToExcel|LooperToWord|LooperToXML)\\b",
+					"name": "constant.language.en.wlang"
+				}
+			]
+		},
+		"invalids": {
+			"patterns": [
+				{
+					"match": "(?i)\\b(ErrorOccurred)\\b",
+					"name": "invalid.en.wlang"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"match": "(?i)\\b(abstract|ancestor|associative|booleans?|characters?|strings?|classes?|composite?|context|short?|definitions?|datetimes?|data?|durations?|dynamic?|emailheader|integers?|fixed?|independent ?|Lists?|longs?|monetary?|bytes?|Stack|Font|Process|reals?|Repetitions?|RendezVous|restResponse|restRequest|signed?s?|Structure|systems?|GanttJob|arrays?|upnpDevices?| Variants?|xmlNodes?)\\b",
+					"name": "variable.parameter.en.wlang"
+				},
+				{
+					"match": "\\.\\.[a-zA-Zéèàêâùïüë]+",
+					"name": "variable.parameter.en.wlang"
+				},
+				{
+					"match": "[^a-zA-Zéèàêâùïüë_-]SQL\\.[a-zA-Zéèàêâùïüë]+",
+					"name": "variable.parameter.en.wlang"
+				}
+			]
+		}
+	},
+	"scopeName": "source.wlang"
+}
